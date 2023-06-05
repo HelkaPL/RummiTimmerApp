@@ -1,35 +1,65 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Audio } from 'expo-av';
 
 import { useTimer } from './useGameTimer';
+const dings = [
+    require('../../assets/sound.wav'),
+]
 
 function Timer({ player }) {
     const [nowPlayer, setNowPlayer] = useState(player);
-    const timeLeft = useTimer(nowPlayer.number, 40);
+    const timeLeft = useTimer(nowPlayer.number, 10);
     // console.log(playerColors.background);
+    const [ding, setDing] = useState(false)
+    //==sound module
+    const SoundEndTurn = async (time) => {
+        console.log(`sound - ${time}`);
+        const sound = new Audio.Sound()
+        try {
+            let source = dings[0]
+            await sound.loadAsync(source)
+            await sound
+                .playAsync()
+                .then(async playbackStatus => {
+                    setTimeout(() => {
+                        sound.unloadAsync()
+                    }, playbackStatus.playableDurationMillis)
+                })
+                .catch(error => { console.log(error); })
+        } catch (error) { console.log(error); }
+    }
+
+
     const formatTimer = (time) => {
-        if (!time || time <= 0) {
-            // PlaySound();
+        console.log(`Czas: ${time}`);
+        if (!time) return `0:00`
+        if (time <= -0) {
+            if (!ding) {
+                setDing(true);
+                SoundEndTurn(time);
+            }
             return `0:00`;
         }
-        if (time < 10) return `0:0${time}`;
+        if (time < 10) {
+            return `0:0${time}`;
+        }
         return `0:${time}`;
     }
 
     const handleStart = () => {
-        console.log(`START: ${nowPlayer.number}`);
-        // setGameStatus("on");
         if (nowPlayer.number >= 4) { setNowPlayer({ ...nowPlayer, number: 1 }) }
         else {
             setNowPlayer({ ...nowPlayer, number: nowPlayer.number + 1 });
         }
-        console.log(nowPlayer);
+        console.log(`START: ${nowPlayer.number + 1}`);
+        // console.log(nowPlayer);
 
     }
     const handleStop = () => {
         // setGameStatus("off");
         setNowPlayer({ ...nowPlayer, number: 0 });
-        console.log(`STOP.`);
+        console.log(`STOP`);
     }
 
     return (
