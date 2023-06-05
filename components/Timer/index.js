@@ -10,7 +10,7 @@ const dings = [
 
 function Timer({ player }) {
     const [nowPlayer, setNowPlayer] = useState(player);
-    const timeLeft = useTimer(nowPlayer.number, 10);
+    const timeLeft = useTimer(nowPlayer.number, 40);
     // console.log(playerColors.background);
     //==sound module
     const [ding, setDing] = useState(false)

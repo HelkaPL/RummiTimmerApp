@@ -9,7 +9,7 @@ export default function App() {
   // const [nextPlayer, setNextPlayer] = useState(player.number);
   // // console.log(`Gracz: ${player.number}`)
   // callback = (nextPlayer) => {
-  //   setNextPlayer(nextPlayer);
+  //   setPlayer({ ...Player, number: startPlayer });
   // }
   // console.log(`Teraz gra: ${nextPlayer}`);
 
