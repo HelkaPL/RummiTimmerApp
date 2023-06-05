@@ -5,19 +5,20 @@ import { Audio } from 'expo-av';
 import { useTimer } from './useGameTimer';
 const dings = [
     require('../../assets/sound.wav'),
+    require('../../assets/counting.mp4'),
 ]
 
 function Timer({ player }) {
     const [nowPlayer, setNowPlayer] = useState(player);
     const timeLeft = useTimer(nowPlayer.number, 10);
     // console.log(playerColors.background);
-    const [ding, setDing] = useState(false)
     //==sound module
-    const SoundEndTurn = async (time) => {
-        console.log(`sound - ${time}`);
+    const [ding, setDing] = useState(false)
+    const SoundEndTurn = async (soundID) => {
+        console.log(`sound !!`);
         const sound = new Audio.Sound()
         try {
-            let source = dings[0]
+            let source = dings[soundID]
             await sound.loadAsync(source)
             await sound
                 .playAsync()
@@ -32,13 +33,17 @@ function Timer({ player }) {
 
 
     const formatTimer = (time) => {
-        console.log(`Czas: ${time}`);
-        if (!time) return `0:00`
-        if (time <= -0) {
-            if (!ding) {
-                setDing(true);
-                SoundEndTurn(time);
-            }
+        console.log(`Sound: - ${ding ? 'ON' : 'OFF'}`);
+        if (time == 7 && ding == false) { setDing(true); console.log(`Sound: SWITCH`); }
+        if (time == 5 && ding) { SoundEndTurn(1); setDing(false); console.log(`SoundCounting`); }
+        console.log(`FormatTime: ${time}`);
+        // if (!time) return `0:00`;
+        if (time <= 0) {
+            // if (ding) {
+            //     console.log(`Checking time: ${time}`);
+            //     SoundEndTurn(0)
+            //     setDing(false);
+            // };
             return `0:00`;
         }
         if (time < 10) {
@@ -70,7 +75,7 @@ function Timer({ player }) {
             <View style={styles.body}>
                 <View style={{ ...styles.outCircle, backgroundColor: nowPlayer.colors.outCircle[nowPlayer.number] }}>
                     <View style={styles.inCircle}>
-                        <Text style={{ fontSize: 72, fontWeight: 'bold', color: 'orange' }}>{nowPlayer.number === 0 ? "START" : formatTimer(timeLeft.toFixed())}</Text>
+                        <Text style={{ fontSize: 72, fontWeight: 'bold', color: 'orange' }}>{nowPlayer.number === 0 ? "START" : formatTimer(Math.ceil(timeLeft))}</Text>
                     </View>
                 </View>
             </View>
