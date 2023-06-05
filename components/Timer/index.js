@@ -17,23 +17,30 @@ function Timer({ player }) {
     }
 
     const handleStart = () => {
+        console.log(`START: ${nowPlayer.number}`);
         // setGameStatus("on");
         if (nowPlayer.number >= 4) { setNowPlayer({ ...nowPlayer, number: 1 }) }
         else {
             setNowPlayer({ ...nowPlayer, number: nowPlayer.number + 1 });
         }
-        // console.log(nowPlayer);
+        console.log(nowPlayer);
+
+    }
+    const handleStop = () => {
+        // setGameStatus("off");
+        setNowPlayer({ ...nowPlayer, number: 0 });
+        console.log(`STOP.`);
     }
 
     return (
         <TouchableOpacity
             onPress={handleStart}
-            // onLongPress={console.log('Long press! STOP')}
+            onLongPress={handleStop}
             style={{ ...styles.body, backgroundColor: 'transparent' }}>
             <View style={styles.body}>
                 <View style={{ ...styles.outCircle, backgroundColor: nowPlayer.colors.outCircle[nowPlayer.number] }}>
                     <View style={styles.inCircle}>
-                        <Text style={{ fontSize: 90, fontWeight: 'bold', color: 'orange' }}>{nowPlayer !== 0 ? formatTimer(timeLeft.toFixed()) : "START"}</Text>
+                        <Text style={{ fontSize: 72, fontWeight: 'bold', color: 'orange' }}>{nowPlayer.number === 0 ? "START" : formatTimer(timeLeft.toFixed())}</Text>
                     </View>
                 </View>
             </View>

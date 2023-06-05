@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 export const useTimer = (nowPlayer, timeLimitInSeconds) => {
+    const FPS = 10;
     const [startTime, setStartTime] = useState(Date.now());
     const [player, setPlayer] = useState(nowPlayer);
     if (nowPlayer !== player) {
@@ -16,11 +17,11 @@ export const useTimer = (nowPlayer, timeLimitInSeconds) => {
         const intervalId = setInterval(() => {
             const timeNow = Date.now();
             const timeLeft = ((endTime - timeNow) / 1000);
-            console.log(`${intervalId} - ${player} - ${timeLeft}`);
+            console.log(`${intervalId} - Gracz: ${player} - ${timeLeft}`);
             setTimer(timeLeft);
             if (player === 0 || timeLeft < 0) { clearInterval(intervalId); }
 
-        }, 1000 * 1 / 10);
+        }, 1000 * 1 / FPS);
 
         return () => {
             clearInterval(intervalId);
