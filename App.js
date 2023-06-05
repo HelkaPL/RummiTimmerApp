@@ -15,6 +15,13 @@ export default function App() {
 
   return (
     <SafeAreaView style={styles.container}>
+      <StatusBar
+        animated={true}
+        backgroundColor="#333"
+        barStyle='Visible'
+      // showHideTransition={statusBarTransition}
+      // hidden={hidden}
+      />
       <PlayerBar player={player} />
       <Timer player={player} parentCallback={callback} />
     </SafeAreaView>
@@ -24,7 +31,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
+    // marginTop: StatusBar.currentHeight || 0,
     alignItems: 'center',
     width: '100%',
     backgroundColor: '#333',
