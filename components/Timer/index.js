@@ -9,9 +9,19 @@ const dings = [
 ]
 
 function Timer({ player }) {
+    // const [startPlayer, setStartPlayer] = useState(player);
+    // const [nextPlayer, setNextPlayer] = useState(0);
+    // if (nextPlayer.number !== player.number) {
+    //     setNextPlayer(player.number)
+    // }
+    // console.log(`Incoming: gracz ${player.number}`);
     const [nowPlayer, setNowPlayer] = useState(player);
+    // console.log(`Start Player: ${startPlayer.number}`);
+    console.log(`App Player: ${player.number}`);
+    console.log(`Now Player: ${nowPlayer.number}`);
+    // console.log(startPlayer);
     const timeLeft = useTimer(nowPlayer.number, 40);
-    // console.log(playerColors.background);
+    // console.log(nowPlayer);
     //==sound module
     const [ding, setDing] = useState(false)
     const SoundEndTurn = async (soundID) => {
@@ -53,14 +63,16 @@ function Timer({ player }) {
     }
 
     const handleStart = () => {
-        if (nowPlayer.number >= 4) { setNowPlayer({ ...nowPlayer, number: 1 }) }
-        else {
-            setNowPlayer({ ...nowPlayer, number: nowPlayer.number + 1 });
+        if (nowPlayer.number === 0) {
+            setNowPlayer({ ...nowPlayer, number: player.number });
+        } else {
+            setNowPlayer({ ...nowPlayer, number: nowPlayer.number % 4 + 1 });
         }
+        console.log(nowPlayer);
         console.log(`START: ${nowPlayer.number + 1}`);
-        // console.log(nowPlayer);
-
     }
+    // console.log(nowPlayer);
+
     const handleStop = () => {
         // setGameStatus("off");
         setNowPlayer({ ...nowPlayer, number: 0 });
@@ -73,7 +85,7 @@ function Timer({ player }) {
             onLongPress={handleStop}
             style={{ ...styles.body, backgroundColor: 'transparent' }}>
             <View style={styles.body}>
-                <View style={{ ...styles.outCircle, backgroundColor: nowPlayer.colors.outCircle[nowPlayer.number] }}>
+                <View style={{ ...styles.outCircle, backgroundColor: nowPlayer.colors[nowPlayer.number === 0 ? player.number : nowPlayer.number] }}>
                     <View style={styles.inCircle}>
                         <Text style={{ fontSize: 72, fontWeight: 'bold', color: 'orange' }}>{nowPlayer.number === 0 ? "START" : formatTimer(Math.ceil(timeLeft))}</Text>
                     </View>

@@ -1,23 +1,37 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-const PlayerBar = ({ player }) => {
+const PlayerBar = (params) => {
   // console.log(player);
   return (
-    <View style={styles.header}>
-      <TouchableOpacity style={{ ...styles.playerAvatar, backgroundColor: player.colors.outCircle[1] }}>
-        <Text style={styles.headerContent}>1</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{ ...styles.playerAvatar, backgroundColor: player.colors.outCircle[2] }}>
-        <Text style={styles.headerContent}>2</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{ ...styles.playerAvatar, backgroundColor: player.colors.outCircle[3] }}>
-        <Text style={styles.headerContent}>3</Text>
-      </TouchableOpacity>
-      <TouchableOpacity style={{ ...styles.playerAvatar, backgroundColor: player.colors.outCircle[4] }}>
-        <Text style={styles.headerContent}>4</Text>
-      </TouchableOpacity>
-    </View>
+    <>
+      <View style={styles.header}>
+        <TouchableOpacity
+          onPress={() => params.setPlayer({ ...params.player, number: 1 })}
+          style={{ ...styles.playerAvatar, backgroundColor: params.player.colors[1] }}
+        >
+          <Text style={styles.headerContent}>1</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => params.setPlayer({ ...params.player, number: 2 })}
+          style={{ ...styles.playerAvatar, backgroundColor: params.player.colors[2] }}
+        >
+          <Text style={styles.headerContent}>2</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => params.setPlayer({ ...params.player, number: 3 })}
+          style={{ ...styles.playerAvatar, backgroundColor: params.player.colors[3] }}
+        >
+          <Text style={styles.headerContent}>3</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          onPress={() => params.setPlayer({ ...params.player, number: 4 })}
+          style={{ ...styles.playerAvatar, backgroundColor: params.player.colors[4] }}
+        >
+          <Text style={styles.headerContent}>4</Text>
+        </TouchableOpacity>
+      </View >
+    </>
   )
 }
 

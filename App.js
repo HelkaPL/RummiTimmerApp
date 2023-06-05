@@ -5,24 +5,16 @@ import PlayerBar from './components/PlayerBar';
 import Timer from './components/Timer';
 
 export default function App() {
-  const [player, setPlayer] = useState({ number: 0, colors: { outCircle: ['#0076A3', '#714693', '#F653A6', '#FED33C', '#5CFE3C'] } });
-  // const [nextPlayer, setNextPlayer] = useState(player.number);
-  // // console.log(`Gracz: ${player.number}`)
-  // callback = (nextPlayer) => {
-  //   setPlayer({ ...Player, number: startPlayer });
-  // }
-  // console.log(`Teraz gra: ${nextPlayer}`);
+  const [player, setPlayer] = useState({ number: 0, colors: ['#714693', '#714693', '#F653A6', '#FED33C', '#5CFE3C'] });
+  // const [player, setPlayer] = useState({ number: 0, colors: ['#0076A3', '#714693', '#F653A6', '#FED33C', '#5CFE3C'] }); // previous colors array
 
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
-        animated={true}
         backgroundColor="#333"
         barStyle='Visible'
-      // showHideTransition={statusBarTransition}
-      // hidden={hidden}
       />
-      <PlayerBar player={player} />
+      <PlayerBar setPlayer={setPlayer} player={player} />
       <Timer player={player} />
     </SafeAreaView>
   );
