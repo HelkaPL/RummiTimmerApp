@@ -5,7 +5,7 @@ import PlayerBar from './components/PlayerBar';
 import Timer from './components/Timer';
 
 export default function App() {
-  const [player, setPlayer] = useState({ number: 0, colors: ['#714693', '#714693', '#F653A6', '#FED33C', '#5CFE3C'] });
+  const [player, setPlayer] = useState({ number: 0, colors: ['#0076A3', '#714693', '#F653A6', '#FED33C', '#5CFE3C'] });
   // const [player, setPlayer] = useState({ number: 0, colors: ['#0076A3', '#714693', '#F653A6', '#FED33C', '#5CFE3C'] }); // previous colors array
 
   return (
