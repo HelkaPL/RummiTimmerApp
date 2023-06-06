@@ -24,7 +24,7 @@
         "backgroundColor": "#333333"
       },
       "package": "com.helkapl.RummiTimmerApp",
-      "versionCOde": 2
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
