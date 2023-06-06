@@ -2,27 +2,29 @@
   "expo": {
     "name": "RummiTimmerApp",
     "slug": "RummiTimmerApp",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#333333"
     },
     "assetBundlePatterns": [
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.helkapl.RummiTimmerApp"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#333333"
       },
-      "package": "com.helkapl.RummiTimmerApp"
+      "package": "com.helkapl.RummiTimmerApp",
+      "versionCOde": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
