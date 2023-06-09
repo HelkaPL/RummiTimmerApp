@@ -5,6 +5,7 @@ const PlayerBar = (params) => {
   // console.log(player);
   return (
     <>
+      <View><Text style={{ ...styles.toptext, opacity: params.player.number === 0 ? 1 : 0 }}>Wybierz kto rozpoczyna gre.</Text></View>
       <View style={styles.header}>
         <TouchableOpacity
           onPress={() => params.setPlayer({ ...params.player, number: 1 })}
@@ -63,6 +64,11 @@ const styles = StyleSheet.create({
     // alignItems: 'center',
     textTransform: 'uppercase',
     color: 'white',
+  },
+  toptext: {
+    fontSize: 26,
+    color: '#FFF',
+    opacity: 1,
   },
 });
 

@@ -4,8 +4,9 @@ import { Audio } from 'expo-av';
 
 import { useTimer } from './useGameTimer';
 const dings = [
-    require('../../assets/sound.wav'),
-    require('../../assets/counting.mp4'),
+    require('../../assets/dong.mp3'),
+    require('../../assets/bip.mp3'),
+    // require('../../assets/counting.mp4'),
 ]
 
 function Timer({ player }) {
@@ -20,7 +21,7 @@ function Timer({ player }) {
     console.log(`App Player: ${player.number}`);
     console.log(`Now Player: ${nowPlayer.number}`);
     // console.log(startPlayer);
-    const timeLeft = useTimer(nowPlayer.number, 40);
+    const timeLeft = useTimer(nowPlayer.number, 10);
     // console.log(nowPlayer);
     //==sound module
     const [ding, setDing] = useState(false)
@@ -44,11 +45,20 @@ function Timer({ player }) {
 
     const formatTimer = (time) => {
         console.log(`Sound: - ${ding ? 'ON' : 'OFF'}`);
-        if (time == 7 && ding == false) { setDing(true); console.log(`Sound: SWITCH`); }
-        if (time == 5 && time > 0 && ding) { SoundEndTurn(1); console.log(`SoundCounting`); }
-        if (time == 0 && ding) { SoundEndTurn(0); setDing(false); console.log(`SoundCounting`); }
-        console.log(`FormatTime: ${time}`);
-        // if (!time) return `0:00`;
+        if (time == 8 && (ding === false || ding < 5)) {
+            setDing(5);
+            // console.log(`Sound: SWITCH`);
+        }
+        if (time <= 5 && time > 0 && ding == time) {
+            SoundEndTurn(1);
+            setDing(time - 1);
+            // console.log(`Counding sound.`);
+        }
+        if (time == 0 && ding === 0) {
+            SoundEndTurn(0);
+            setDing(false);
+            // console.log(`Sound End.`);
+        }
         if (time <= 0) {
             // if (ding) {
             //     console.log(`Checking time: ${time}`);
@@ -85,8 +95,9 @@ function Timer({ player }) {
             onPress={handleStart}
             onLongPress={handleStop}
             style={{ ...styles.body, backgroundColor: 'transparent' }}>
+            <View><Text style={styles.toptext}>Tap for NEXT, Hold for STOP</Text></View>
             <View style={styles.body}>
-                <View style={{ ...styles.outCircle, backgroundColor: nowPlayer.colors[nowPlayer.number === 0 ? player.number : nowPlayer.number] }}>
+                 <View style={{ ...styles.outCircle, backgroundColor: nowPlayer.colors[nowPlayer.number === 0 ? player.number : nowPlayer.number] }}>
                     <View style={styles.inCircle}>
                         <Text style={{ fontSize: 72, fontWeight: 'bold', color: 'orange' }}>{nowPlayer.number === 0 ? "START" : formatTimer(Math.ceil(timeLeft))}</Text>
                     </View>
@@ -98,9 +109,10 @@ function Timer({ player }) {
 
 const styles = StyleSheet.create({
     body: {
+        position: 'relative',
         padding: 5,
         alignItems: 'center',
-        justifyContent: 'center',
+        // justifyContent: 'center',
         height: '100%',
     },
     outCircle: {
@@ -118,6 +130,12 @@ const styles = StyleSheet.create({
         borderRadius: 500,
         backgroundColor: '#333'
         // backgrounrdColor: player.colors.inCircle,
+    },
+    toptext: {
+        fontSize: 26,
+        color: '#666',
+        paddingTop: 20,
+        margin: 0,
     },
 });
 
