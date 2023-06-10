@@ -28,7 +28,6 @@ const PlayerBar = (params) => {
           onPress={() => params.setPlayer({ ...params.player, number: (params.player.maxPlayers < 4) ? params.player.number : 4 })}
           onLongPress={() => params.setPlayer({ ...params.player, maxPlayers: (params.player.maxPlayers < 4) ? 4 : 3 })}
           style={{ ...styles.playerAvatar, backgroundColor: params.player.colors[4], opacity: params.player.maxPlayers >= 4 ? 1 : 0.2 }}
-        // disabled={params.player.maxPlayers >= 4 ? false : true}
         >
           <Text style={styles.headerContent}>4</Text>
         </TouchableOpacity>

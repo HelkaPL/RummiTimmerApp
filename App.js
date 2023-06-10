@@ -6,7 +6,6 @@ import Timer from './components/Timer';
 
 export default function App() {
   const [player, setPlayer] = useState({ number: 0, maxPlayers: 4, colors: ['#0076A3', '#714693', '#F653A6', '#FED33C', '#5CFE3C'] });
-  console.log(`App: players: ${player.maxPlayers}`);
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -22,7 +21,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    // marginTop: StatusBar.currentHeight || 0,
     alignItems: 'center',
     width: '100%',
     backgroundColor: '#333',

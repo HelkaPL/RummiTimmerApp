@@ -6,25 +6,15 @@ import { useTimer } from './useGameTimer';
 const dings = [
     require('../../assets/dong.mp3'),
     require('../../assets/bip.mp3'),
-    // require('../../assets/counting.mp4'),
 ]
 
 function Timer({ player }) {
-    // const [startPlayer, setStartPlayer] = useState(player);
-    // const [nextPlayer, setNextPlayer] = useState(0);
-    // if (nextPlayer.number !== player.number) {
-    //     setNextPlayer(player.number)
-    // }
-    // console.log(`Incoming: gracz ${player.number}`);
-    const [nowPlayer, setNowPlayer] = useState(player);
-    // console.log(`Start Player: ${startPlayer.number}`);
+     const [nowPlayer, setNowPlayer] = useState(player);
     console.log(`App Player: ${player.number}`);
     console.log(`Now Player: ${nowPlayer.number}`);
-    // console.log(startPlayer);
     const timeLeft = useTimer(nowPlayer.number, 10);
-    // console.log(nowPlayer);
-    //==sound module
-    const [ding, setDing] = useState(false)
+    const [ding, setDing] = useState(false);
+
     const SoundEndTurn = async (soundID) => {
         console.log(`sound !!`);
         const sound = new Audio.Sound()
@@ -44,27 +34,19 @@ function Timer({ player }) {
 
 
     const formatTimer = (time) => {
-        console.log(`Sound: - ${ding ? 'ON' : 'OFF'}`);
+        // console.log(`Sound: - ${ding ? 'ON' : 'OFF'}`);
         if (time == 8 && (ding === false || ding < 5)) {
             setDing(5);
-            // console.log(`Sound: SWITCH`);
         }
         if (time <= 5 && time > 0 && ding == time) {
             SoundEndTurn(1);
             setDing(time - 1);
-            // console.log(`Counding sound.`);
         }
         if (time == 0 && ding === 0) {
             SoundEndTurn(0);
             setDing(false);
-            // console.log(`Sound End.`);
         }
         if (time <= 0) {
-            // if (ding) {
-            //     console.log(`Checking time: ${time}`);
-            //     SoundEndTurn(0)
-            //     setDing(false);
-            // };
             return `0:00`;
         }
         if (time < 10) {
@@ -82,8 +64,6 @@ function Timer({ player }) {
         console.log(nowPlayer);
         console.log(`START: ${nowPlayer.number + 1}`);
     }
-    // console.log(nowPlayer);
-
     const handleStop = () => {
         // setGameStatus("off");
         setNowPlayer({ ...nowPlayer, number: 0 });
@@ -130,7 +110,6 @@ const styles = StyleSheet.create({
         aspectRatio: 1,
         borderRadius: 500,
         backgroundColor: '#333'
-        // backgrounrdColor: player.colors.inCircle,
     },
     toptext: {
         fontSize: 26,
