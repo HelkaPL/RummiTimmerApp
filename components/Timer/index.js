@@ -61,7 +61,7 @@ function Timer({ player }) {
         } else {
             setNowPlayer({ ...nowPlayer, number: nowPlayer.number % player.maxPlayers + 1 });
         }
-        console.log(nowPlayer);
+        // console.log(nowPlayer);
         console.log(`START: ${nowPlayer.number + 1}`);
     }
     const handleStop = () => {
