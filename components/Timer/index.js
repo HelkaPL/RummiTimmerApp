@@ -77,7 +77,7 @@ function Timer({ player }) {
         if (nowPlayer.number === 0) {
             setNowPlayer({ ...nowPlayer, number: player.number });
         } else {
-            setNowPlayer({ ...nowPlayer, number: nowPlayer.number % 4 + 1 });
+            setNowPlayer({ ...nowPlayer, number: nowPlayer.number % player.maxPlayers + 1 });
         }
         console.log(nowPlayer);
         console.log(`START: ${nowPlayer.number + 1}`);
@@ -97,7 +97,7 @@ function Timer({ player }) {
             style={{ ...styles.body, backgroundColor: 'transparent' }}>
             <View><Text style={styles.toptext}>Tap for NEXT, Hold for STOP</Text></View>
             <View style={styles.body}>
-                 <View style={{ ...styles.outCircle, backgroundColor: nowPlayer.colors[nowPlayer.number === 0 ? player.number : nowPlayer.number] }}>
+                <View style={{ ...styles.outCircle, backgroundColor: nowPlayer.colors[nowPlayer.number === 0 ? player.number : nowPlayer.number] }}>
                     <View style={styles.inCircle}>
                         <Text style={{ fontSize: 72, fontWeight: 'bold', color: 'orange' }}>{nowPlayer.number === 0 ? "START" : formatTimer(Math.ceil(timeLeft))}</Text>
                     </View>
@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
         height: '100%',
     },
     outCircle: {
+        marginTop: 30,
         alignItems: 'center',
         justifyContent: 'center',
         width: '150%',
