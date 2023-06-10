@@ -9,10 +9,10 @@ const dings = [
 ]
 
 function Timer({ player }) {
-     const [nowPlayer, setNowPlayer] = useState(player);
+    const [nowPlayer, setNowPlayer] = useState(player);
     console.log(`App Player: ${player.number}`);
     console.log(`Now Player: ${nowPlayer.number}`);
-    const timeLeft = useTimer(nowPlayer.number, 10);
+    const timeLeft = useTimer(nowPlayer.number, 40);
     const [ding, setDing] = useState(false);
 
     const SoundEndTurn = async (soundID) => {
