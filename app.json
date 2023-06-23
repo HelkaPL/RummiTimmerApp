@@ -2,7 +2,7 @@
   "expo": {
     "name": "TTL RummiTimer",
     "slug": "RummiTimmerApp",
-    "version": "1.1.0",
+    "version": "1.1.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
@@ -24,7 +24,7 @@
         "backgroundColor": "#333333"
       },
       "package": "com.helkapl.RummiTimmerApp",
-      "versionCode": 4
+      "versionCode": 5
     },
     "web": {
       "favicon": "./assets/favicon.png"

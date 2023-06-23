@@ -5,7 +5,7 @@ import PlayerBar from './components/PlayerBar';
 import Timer from './components/Timer';
 
 export default function App() {
-  const [player, setPlayer] = useState({ number: 0, maxPlayers: 4, colors: ['#0076A3', '#714693', '#F653A6', '#FED33C', '#5CFE3C'] });
+  const [player, setPlayer] = useState({ number: 0, maxPlayers: 4, colors: ['#666666', '#714693', '#FED33C', '#0076A3', '#5CFE3C'], angle: [0, 0, 90, 180, 270] });
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar

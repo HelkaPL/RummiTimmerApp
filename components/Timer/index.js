@@ -10,10 +10,11 @@ const dings = [
 
 function Timer({ player }) {
     const [nowPlayer, setNowPlayer] = useState(player);
-    console.log(`App Player: ${player.number}`);
-    console.log(`Now Player: ${nowPlayer.number}`);
+    // console.log(`App Player: ${player.number}`);
+    // console.log(`Now Player: ${nowPlayer.number}`);
     const timeLeft = useTimer(nowPlayer.number, 40);
     const [ding, setDing] = useState(false);
+    const angle = `${nowPlayer.angle[nowPlayer.number]}deg`
 
     const SoundEndTurn = async (soundID) => {
         console.log(`sound !!`);
@@ -61,13 +62,11 @@ function Timer({ player }) {
         } else {
             setNowPlayer({ ...nowPlayer, number: nowPlayer.number % player.maxPlayers + 1 });
         }
-        // console.log(nowPlayer);
-        console.log(`START: ${nowPlayer.number + 1}`);
+        //console.log(`START: ${nowPlayer.number + 1}`);
     }
     const handleStop = () => {
-        // setGameStatus("off");
         setNowPlayer({ ...nowPlayer, number: 0 });
-        console.log(`STOP`);
+        // console.log(`STOP`);
     }
 
     return (
@@ -77,8 +76,8 @@ function Timer({ player }) {
             style={{ ...styles.body, backgroundColor: 'transparent' }}>
             <View><Text style={styles.toptext}>Tap for NEXT, Hold for STOP</Text></View>
             <View style={styles.body}>
-                <View style={{ ...styles.outCircle, backgroundColor: nowPlayer.colors[nowPlayer.number === 0 ? player.number : nowPlayer.number] }}>
-                    <View style={styles.inCircle}>
+                <View style={{ ...styles.outCircle,backgroundColor: nowPlayer.colors[nowPlayer.number === 0 ? player.number : nowPlayer.number] }}>
+                    <View style={{ ...styles.inCircle, transform: [{rotate: angle}] }} >
                         <Text style={{ fontSize: 72, fontWeight: 'bold', color: 'orange' }}>{nowPlayer.number === 0 ? "START" : formatTimer(Math.ceil(timeLeft))}</Text>
                     </View>
                 </View>
@@ -109,7 +108,8 @@ const styles = StyleSheet.create({
         width: '45%',
         aspectRatio: 1,
         borderRadius: 500,
-        backgroundColor: '#333'
+        backgroundColor: '#333',
+        // transform: [{rotate: '90deg'}]
     },
     toptext: {
         fontSize: 26,
