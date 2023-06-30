@@ -14,7 +14,8 @@ function Timer({ player }) {
     // console.log(`Now Player: ${nowPlayer.number}`);
     const timeLeft = useTimer(nowPlayer.number, 40);
     const [ding, setDing] = useState(false);
-    const angle = `${nowPlayer.angle[nowPlayer.number]}deg`
+    const [angleId, setAngleId] = useState(1);
+    const angle = `${nowPlayer.angle[angleId]}deg`
 
     const SoundEndTurn = async (soundID) => {
         console.log(`sound !!`);
@@ -59,13 +60,16 @@ function Timer({ player }) {
     const handleStart = () => {
         if (nowPlayer.number === 0) {
             setNowPlayer({ ...nowPlayer, number: player.number });
+            setAngleId(1);
         } else {
             setNowPlayer({ ...nowPlayer, number: nowPlayer.number % player.maxPlayers + 1 });
+            setAngleId(angleId % player.maxPlayers + 1);
         }
         //console.log(`START: ${nowPlayer.number + 1}`);
     }
     const handleStop = () => {
         setNowPlayer({ ...nowPlayer, number: 0 });
+        setAngleId(1);
         // console.log(`STOP`);
     }
 
@@ -76,12 +80,13 @@ function Timer({ player }) {
             style={{ ...styles.body, backgroundColor: 'transparent' }}>
             <View><Text style={styles.toptext}>Tap for NEXT, Hold for STOP</Text></View>
             <View style={styles.body}>
-                <View style={{ ...styles.outCircle,backgroundColor: nowPlayer.colors[nowPlayer.number === 0 ? player.number : nowPlayer.number] }}>
-                    <View style={{ ...styles.inCircle, transform: [{rotate: angle}] }} >
+                <View style={{ ...styles.outCircle, backgroundColor: nowPlayer.colors[nowPlayer.number === 0 ? player.number : nowPlayer.number] }}>
+                    <View style={{ ...styles.inCircle, transform: [{ rotate: angle }] }} >
                         <Text style={{ fontSize: 72, fontWeight: 'bold', color: 'orange' }}>{nowPlayer.number === 0 ? "START" : formatTimer(Math.ceil(timeLeft))}</Text>
                     </View>
                 </View>
             </View>
+            <View><Text style={styles.toptext}>⬇️ ⬇️ Rozpoczyna ⬇️ ⬇️</Text></View>
         </TouchableOpacity>
     )
 }
@@ -91,8 +96,11 @@ const styles = StyleSheet.create({
         position: 'relative',
         padding: 5,
         alignItems: 'center',
-        // justifyContent: 'center',
-        height: '100%',
+        justifyContent: 'center',
+        height: '85%',
+        // borderStyle: 'solid',
+        // borderWidth: 1,
+        // borderColor: '#FFFFFF'
     },
     outCircle: {
         marginTop: 30,

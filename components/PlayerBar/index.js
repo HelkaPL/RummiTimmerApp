@@ -4,32 +4,32 @@ import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 const PlayerBar = (params) => {
   return (
     <>
-      <View><Text style={{ ...styles.toptext, opacity: params.player.number === 0 ? 1 : 0 }}>Wybierz kolor który zacznie.</Text></View>
+      <View><Text style={{ ...styles.toptext, opacity: params.player.number === 0 ? 1 : 0 }}>Wybierz kolor który zaczyna.</Text></View>
       <View style={styles.header}>
         <TouchableOpacity
           onPress={() => params.setPlayer({ ...params.player, number: 1 })}
           style={{ ...styles.playerAvatar, backgroundColor: params.player.colors[1] }}
         >
-          <Text style={styles.headerContent}>1</Text>
+          <Text style={styles.headerContent}></Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => params.setPlayer({ ...params.player, number: 2 })}
           style={{ ...styles.playerAvatar, backgroundColor: params.player.colors[2] }}
         >
-          <Text style={styles.headerContent}>2</Text>
+          <Text style={styles.headerContent}></Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => params.setPlayer({ ...params.player, number: 3 })}
           style={{ ...styles.playerAvatar, backgroundColor: params.player.colors[3] }}
         >
-          <Text style={styles.headerContent}>3</Text>
+          <Text style={styles.headerContent}></Text>
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => params.setPlayer({ ...params.player, number: (params.player.maxPlayers < 4) ? params.player.number : 4 })}
           onLongPress={() => params.setPlayer({ ...params.player, maxPlayers: (params.player.maxPlayers < 4) ? 4 : 3 })}
           style={{ ...styles.playerAvatar, backgroundColor: params.player.colors[4], opacity: params.player.maxPlayers >= 4 ? 1 : 0.2 }}
         >
-          <Text style={styles.headerContent}>4</Text>
+          <Text style={styles.headerContent}></Text>
         </TouchableOpacity>
       </View >
     </>
