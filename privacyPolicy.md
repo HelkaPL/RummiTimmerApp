@@ -1,8 +1,3 @@
-# TimmerApp build on React Native
-
-This app was created on React Native with Expo  
-I hope You can find it in Android Play Store =]
-
 # Polityka Prywatności
 
 Niniejsza Polityka stanowi podstawową informację o celach, sposobach przetwarzania oraz
