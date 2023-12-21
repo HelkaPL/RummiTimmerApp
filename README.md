@@ -1,4 +1,5 @@
-# Rummi Timer App build on React Native
+# TTL Timer App 
+(build on React Native)
 
 This app was created on React Native with Expo  
 I hope You can find it in Android Play Store =]
@@ -6,7 +7,7 @@ I hope You can find it in Android Play Store =]
 # Polityka Prywatności
 
 Niniejsza Polityka stanowi podstawową informację o celach, sposobach przetwarzania oraz
-bezpieczeństwie Twoich danych osobowych, jako użytkownika Aplikacji: TTL Rummi Timer
+bezpieczeństwie Twoich danych osobowych, jako użytkownika Aplikacji: TTL Timer App
 (zwanej dalej Stroną). Zapoznając się z Polityką prywatności dowiesz się kto jest
 administratorem Twoich danych osobowych, jakie dane osobowe są przez Stronę zbierane,
 w jakich celach są wykorzystywane oraz jak są chronione.
